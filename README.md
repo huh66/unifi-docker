@@ -1,62 +1,62 @@
 # UniFi Network Application Docker Image
 
-Dieses Docker-Image enthält die UniFi Network Application 9.5.21 mit allen erforderlichen Abhängigkeiten.
+This Docker image contains UniFi Network Application 9.5.21 with all required dependencies.
 
-## ⚠️ Wichtiger Hinweis
+## ⚠️ Important Notice
 
-**Die UniFi Network Application Software ist proprietäre Software von Ubiquiti Inc.**  
-Das `.deb` Paket ist **NICHT** in diesem Repository enthalten und darf nicht weitergegeben werden.
+**The UniFi Network Application software is proprietary software owned by Ubiquiti Inc.**  
+The `.deb` package is **NOT** included in this repository and may not be redistributed.
 
-Sie müssen das UniFi Network Application Paket von der offiziellen Ubiquiti-Website herunterladen:
-- **Offizielle Download-Seite**: https://www.ui.com/download/unifi
-- Wählen Sie "UniFi Network Application" → "Debian/Ubuntu Linux" → Version 9.5.21
+You must download the UniFi Network Application package from the official Ubiquiti website:
+- **Official Download Page**: https://www.ui.com/download/unifi
+- Select: UniFi Network Application → Debian/Ubuntu Linux → Version 9.5.21
 
-## Voraussetzungen
+## Prerequisites
 
-- Docker und Docker Compose installiert
-- Das UniFi .deb Paket (`unifi_sysvinit_all.deb`) muss von Ubiquiti heruntergeladen und im gleichen Verzeichnis wie das Dockerfile platziert werden
+- Docker and Docker Compose installed
+- The UniFi .deb package (`unifi_sysvinit_all.deb`) must be downloaded from Ubiquiti and placed in the same directory as the Dockerfile
 
 ## Installation
 
-1. Laden Sie das UniFi .deb Paket von der [offiziellen Ubiquiti-Website](https://www.ui.com/download/unifi) herunter
-   - Wählen Sie: UniFi Network Application → Debian/Ubuntu Linux → Version 9.5.21
-   - Dateiname: `unifi_sysvinit_all.deb`
+1. Download the UniFi .deb package from the [official Ubiquiti website](https://www.ui.com/download/unifi)
+   - Select: UniFi Network Application → Debian/Ubuntu Linux → Version 9.5.21
+   - Filename: `unifi_sysvinit_all.deb`
 
-2. Platzieren Sie das heruntergeladene `.deb` Paket in diesem Verzeichnis:
+2. Place the downloaded `.deb` package in this directory:
    ```bash
    cp ~/Downloads/unifi_sysvinit_all.deb .
    ```
 
-2. Erstellen Sie das Docker-Image:
+3. Build the Docker image:
    ```bash
-   docker-compose build
+   docker compose build
    ```
 
-   Oder manuell:
+   Or manually:
    ```bash
    docker build --build-arg UNIFI_DEB=unifi_sysvinit_all.deb -t unifi:9.5.21 .
    ```
 
-3. Starten Sie den Container:
+4. Start the container:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
-## Zugriff
+## Access
 
-- Web-Interface (HTTP): http://localhost:8081
-- Web-Interface (HTTPS): https://localhost:8443
+- Web Interface (HTTP): http://localhost:8081
+- Web Interface (HTTPS): https://localhost:8443
 - Portal HTTP: http://localhost:8880
 - Portal HTTPS: https://localhost:8843
 
-## Datenpersistenz
+## Data Persistence
 
-Alle UniFi-Daten werden im Docker-Volume `unifi-data` gespeichert und bleiben auch nach dem Neustart des Containers erhalten.
+All UniFi data is stored in the Docker volume `unifi-data` and persists across container restarts.
 
 ## Ports
 
-Die folgenden Ports werden verwendet:
-- **8081**: HTTP (angepasst von Standard 8080 wegen möglicher Konflikte)
+The following ports are used:
+- **8081**: HTTP (adjusted from default 8080 due to potential conflicts)
 - **8443**: HTTPS
 - **8880**: Portal HTTP
 - **8843**: Portal HTTPS
@@ -64,47 +64,47 @@ Die folgenden Ports werden verwendet:
 - **5656/udp**: STUN
 - **10001/udp**: Discovery
 
-## Wartung
+## Maintenance
 
-### Logs anzeigen:
+### View logs:
 ```bash
-docker-compose logs -f unifi
+docker compose logs -f unifi
 ```
 
-### Container stoppen:
+### Stop container:
 ```bash
-docker-compose down
+docker compose down
 ```
 
-### Container neu starten:
+### Restart container:
 ```bash
-docker-compose restart
+docker compose restart
 ```
 
-### Daten-Backup:
+### Data backup:
 ```bash
 docker run --rm -v unifi-data:/data -v $(pwd):/backup debian:12-slim tar czf /backup/unifi-backup-$(date +%Y%m%d).tar.gz /data
 ```
 
-## Hinweise
+## Notes
 
-- Das Image basiert auf Debian 12 (bookworm)
-- MongoDB 7.0 wird verwendet (kompatibel mit UniFi 9.5.21)
-- OpenJDK 17 wird als Java Runtime verwendet
-- libssl1.1 wird aus dem Debian 11 Security Repository installiert (benötigt für MongoDB)
+- Image is based on Debian 12 (bookworm)
+- MongoDB 7.0 is used (compatible with UniFi 9.5.21)
+- OpenJDK 17 is used as Java Runtime
+- libssl1.1 is installed from Debian 11 Security Repository (required for MongoDB)
 
-## Lizenz
+## License
 
-**Dieses Repository:**
-- Dockerfiles, Skripte und Konfigurationsdateien: [MIT License](LICENSE)
+**This Repository:**
+- Dockerfiles, scripts, and configuration files: [MIT License](LICENSE)
 
 **UniFi Network Application:**
-- Proprietäre Software von Ubiquiti Inc.
-- Unterliegt der [Ubiquiti End User License Agreement](https://www.ui.com/legal/terms-of-service)
-- Muss von der [offiziellen Website](https://www.ui.com/download/unifi) heruntergeladen werden
+- Proprietary software by Ubiquiti Inc.
+- Subject to [Ubiquiti End User License Agreement](https://www.ui.com/legal/terms-of-service)
+- Must be downloaded from the [official website](https://www.ui.com/download/unifi)
 
 ## Disclaimer
 
-Dieses Projekt ist nicht mit Ubiquiti Inc. verbunden oder von Ubiquiti Inc. genehmigt.  
-Die UniFi Network Application ist eine Marke von Ubiquiti Inc.
+This project is not affiliated with or endorsed by Ubiquiti Inc.  
+UniFi Network Application is a trademark of Ubiquiti Inc.
 
