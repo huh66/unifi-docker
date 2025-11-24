@@ -1,0 +1,33 @@
+services:
+  unifi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UNIFI_DEB: unifi_sysvinit_all.deb
+    image: unifi:9.5.21
+    container_name: unifi-controller
+    restart: unless-stopped
+    ports:
+      - "8081:8081"  # HTTP (angepasst wegen Port-Konflikt)
+      - "8443:8443"  # HTTPS
+      - "8880:8880"  # Portal HTTP
+      - "8843:8843"  # Portal HTTPS
+      - "27117:27117/udp"  # MongoDB
+      - "5656:5656/udp"    # STUN
+      - "10001:10001/udp"  # Discovery
+    volumes:
+      - unifi-data:/usr/lib/unifi/data
+    environment:
+      - TZ=Europe/Berlin
+    networks:
+      - unifi-network
+
+volumes:
+  unifi-data:
+    driver: local
+
+networks:
+  unifi-network:
+    driver: bridge
+

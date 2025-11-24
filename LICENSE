@@ -1,0 +1,43 @@
+MIT License
+
+Copyright (c) 2025
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+IMPORTANT LEGAL NOTICE:
+
+This repository contains Docker configuration files and scripts for running
+Ubiquiti UniFi Network Application. The UniFi Network Application software
+itself is proprietary software owned by Ubiquiti Inc. and is subject to
+Ubiquiti's End User License Agreement (EULA).
+
+- The UniFi .deb package is NOT included in this repository
+- Users must download the UniFi Network Application from the official
+  Ubiquiti website: https://www.ui.com/download/unifi
+- This repository only provides Docker configuration and automation scripts
+- The Dockerfiles, scripts, and configuration files in this repository are
+  provided under the MIT License above
+- The UniFi Network Application software remains the property of Ubiquiti Inc.
+  and is subject to Ubiquiti's license terms
+
+For Ubiquiti's official terms and conditions, please visit:
+https://www.ui.com/legal/terms-of-service
+

@@ -1,0 +1,15 @@
+# UniFi .deb Paket (proprietär, darf nicht weitergegeben werden)
+*.deb
+unifi_sysvinit_all.deb
+
+# Docker-spezifische Dateien
+.docker/
+
+# Logs
+*.log
+
+# Temporäre Dateien
+*.tmp
+*.bak
+*~
+
