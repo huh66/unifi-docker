@@ -68,7 +68,7 @@ VOLUME ["/usr/lib/unifi/data"]
 
 # Healthcheck
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:8081/inform || exit 1
+    CMD curl -f http://localhost:8080/inform || exit 1
 
 # Startskript
 COPY docker-entrypoint.sh /usr/local/bin/

@@ -9,13 +9,19 @@ services:
     container_name: unifi-controller
     restart: unless-stopped
     ports:
-      - "8081:8081"  # HTTP (angepasst wegen Port-Konflikt)
-      - "8443:8443"  # HTTPS
-      - "8880:8880"  # Portal HTTP
-      - "8843:8843"  # Portal HTTPS
-      - "27117:27117/udp"  # MongoDB
-      - "5656:5656/udp"    # STUN
-      - "10001:10001/udp"  # Discovery
+      # ESSENTIELL für Device Adoption (basierend auf funktionierender lokaler Installation):
+      - "8080:8080/tcp" # Device/controller communication (Inform-Protokoll) - WICHTIG!
+      - "8443:8443/tcp" # Controller GUI/API
+      - "10001:10001/udp" # AP discovery - WICHTIG!
+      # Weitere Ports (wie in lokaler Installation):
+      - "8880:8880/tcp" # HTTP portal redirection
+      - "8843:8843/tcp" # HTTPS portal redirection
+      - "1900:1900/udp" # SSDP (UPnP) - für Device Discovery
+      # Ports weggelassen (bereits belegt auf Host):
+      # - "3478:3478/udp"  # STUN (bereits belegt)
+      # - "5514:5514/udp"  # Syslog (bereits belegt)
+      # - "6789:6789/tcp"  # Speed test (bereits belegt)
+      # - "8081:8081/tcp"  # Nicht benötigt, verwenden 8080
     volumes:
       - unifi-data:/usr/lib/unifi/data
     environment:
@@ -30,4 +36,3 @@ volumes:
 networks:
   unifi-network:
     driver: bridge
-
